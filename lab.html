@@ -10,6 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
     <script>
+        console.log("현재 웹사이트 경로:",location.pathname);
+
+        if(!localStorage.getItem("hasVisited")){
+            alert("환영합니다!!")
+            localStorage.setItem("hasVisited","true")
+        }
+        else{
+            console.log("이미 방문한 사용자입니다")
+        }
         let timeId = null;
         window.addEventListener("load", function () {
             let count = 0;
@@ -29,7 +38,7 @@
             })
 
         })
-        
+
 
     </script>
 </head>
