@@ -101,7 +101,8 @@
     <script>
         //moc api의 url
         const url = "https://6adea6df4e88f1bba4a53a44.mockapi.io/books";
-        const ckeck = null;
+        let ckeck = null;
+        let booksdata = []; // fillter를 쓰기위해 데이터를 보관할 전역 변수 추가
 
         async function rander() {
             try {
@@ -116,8 +117,10 @@
                 // 가져온 데이터 확인용 
                 console.log("서버에서 가져온 데이터:", data);
 
+                booksdata = data;//jason을 통해 저장된 데이터를 array에 옮김
+
                 // 3번의 화면 출력 함수 호출
-                renderData(data);
+                renderData(booksdata);
 
             } catch (error) {
                 console.error(error);
@@ -152,7 +155,7 @@
                     document.getElementById('a').value = item.avatar;
                     document.getElementById('g').value = item.genre;
                     document.getElementById('p').value = item.price;
-                    document.querySelector('#form button[type="submit"]').textContent = '추가';//버튼 이름 바꾸기
+                    document.querySelector('#form button[type="submit"]').textContent = '수정';//버튼 이름 바꾸기
                     ckeck = item.id;
 
                 });
@@ -178,22 +181,41 @@
             };
 
             try {
-                //fetch()를 이용해 POST 요청 보내기
-                const response = await fetch(url, {
-                    method: 'POST', // 추가할 때는 무조건 POST
-                    headers: {
-                        // 서버에 우리가 보낼 데이터가 JSON 형태임을 알려주는 역할
-                        'Content-Type': 'application/json'
-                    },
-                    // 자바스크립트 객체를 JSON 문자열로 변환해서 서버로 전송
-                    body: JSON.stringify(newBook)
-                });
+                if (ckeck != null) {//수정에서 들어왔다면 실행
+                 
+                    response = await fetch(`${url}/${ckeck}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newBook) // bookData를 newBook으로 수정
+                    });
 
-                if (!response.ok) {
-                    throw new Error('데이터 추가에 실패했습니다.');
+                    if (!response.ok) throw new Error('데이터 수정에 실패했습니다.');
+                    alert('책 정보가 수정되었습니다!');
+
+                    // 작업이 끝났으니 다시 '추가 모드'로 돌려놓기 위해 비워줌
+                    editId = null;
+                    document.querySelector('#form button[type="submit"]').textContent = '새 책 추가하기';
+
                 }
 
-                alert('새로운 책이 추가되었습니다!');
+                else {
+                    //fetch()를 이용해 POST 요청 보내기
+                    const response = await fetch(url, {
+                        method: 'POST', // 추가할 때는 무조건 POST
+                        headers: {
+                            // 서버에 우리가 보낼 데이터가 JSON 형태임을 알려주는 역할
+                            'Content-Type': 'application/json'
+                        },
+                        // 자바스크립트 객체를 JSON 문자열로 변환해서 서버로 전송
+                        body: JSON.stringify(newBook)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('데이터 추가에 실패했습니다.');
+                    }
+
+                    alert('새로운 책이 추가되었습니다!');
+                }
 
                 // 입력창 비우기
                 form.reset();
