@@ -1,26 +1,31 @@
 Deployment: GitHub URL, Vercel URL, MockAPI Endpoint URL (비밀 키·비밀번호는 기록하지 않음)
 
 Service: 주제, Field, CRUD 기능
+
 1.주제: 도서 관리
+
 2.필드
+
     a.id:아이디
     b.title:제목
     c.avatar:작가
     d.genre:장르
     e.price:가격
+
 3.crud기능
+
     a.c:생성 
-    b.r
+    b.r읽어오기
     c.u수정
     d.d삭제
     
- 
+실제 접근 가능한 MockAPI Endpoint URL : https://6adea6df4e88f1bba4a53a44.mockapi.io/books
 
 Key Learning: fetch(), JSON, async/await, REST API 등 배운 내용 3가지
 
-GET, POST, PUT, DELETE가 각각 CRUD에 조회 추가 수정 삭제에 대응한다는 것을 알게됨
-response.ok로 성공 여부를 확인하고 try/catch로 오류를 처리하는 방법이 있다는 것을 배움
-POST, PUT는 각각 바디에서 값을 가져오기 떄문에 Content-Type: application/json 헤더를 통해 지금 보내는 바디의 형색이 jason이라는것을 알려줘야한다는 것을 알게됨
+    GET, POST, PUT, DELETE가 각각 CRUD에 조회 추가 수정 삭제에 대응한다는 것을 알게됨
+    response.ok로 성공 여부를 확인하고 try/catch로 오류를 처리하는 방법이 있다는 것을 배움
+    POST, PUT는 각각 바디에서 값을 가져오기 떄문에 Content-Type: application/json 헤더를 통해 지금 보내는 바디의 형색이 jason이라는것을 알려줘야한다는 것을 알게됨
 
 
 
