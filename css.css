@@ -1,0 +1,90 @@
+body {
+    background-color: rgba(235, 192, 131, 0.6);
+    color: #130301;
+    text-align: center;
+}
+ 
+#input {
+    /*#중요!!*/
+    background-color: rgb(189, 235, 203);
+    border-radius: 1rem;
+    /* 모서리 둥글게 */
+    box-shadow: 0 0.4rem 0.5rem;
+    /* 은은한 그림자 */
+    padding-bottom: 15px;
+}
+ 
+#outcome {
+    background-color: rgb(201, 233, 207);
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 0.5rem;
+}
+ 
+button[type=button],
+button[type=reset] {
+    background-color: #06f311;
+    color: rgb(13, 13, 13);
+    padding: 14px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    /*
+    cursor: pointer;
+    커서를 손가락 모양으로 만들어줌
+    필요 없어서 제거
+    */
+    box-shadow: 0 0.4rem 0.5rem;
+    /* 은은한 그림자 */
+    border-radius: 1rem;
+    /* 모서리 둥글게 */
+}
+ 
+label {
+    padding-inline: 10px;
+    /*padding-left: 10px; + padding-right: 10px;과 동일*/
+    display: inline-block;
+    width: 80px;
+    /*라벨은 인라인 테그임!!>>>> display: inline-block;를 같이 써줘야함*/
+    background-color: #f0f0f3;
+    text-align: center;
+}
+ 
+input:hover {
+    box-sizing: border-box;
+    /*font-family: inherit;이걸 쓰면 input의 박스가 커짐*/
+    background-color: rgb(112, 228, 145);
+}
+ 
+button[type=button]:hover,
+button[type=reset]:hover {
+    background-color: #2528eb;
+    transition: all 0.2s;
+}
+ 
+button:hover {
+    font-family: inherit;
+    background-color: aqua;
+}
+ 
+h2 {
+    background-color: green;
+    border-radius: 1rem;
+    /* 모서리 둥글게 */
+}
+ 
+button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+ 
+table {
+    margin: 0 auto;
+    /*0:위아래 마진을 0으로 두겠다는 의미, auto: 양옆의 중앙을 자동으로 나누겠다*/
+}
+ 
+table th,
+table tr {
+    background-color: white;
+}
