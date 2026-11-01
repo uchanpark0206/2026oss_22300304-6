@@ -101,6 +101,7 @@
     <script>
         //moc api의 url
         const url = "https://6adea6df4e88f1bba4a53a44.mockapi.io/books";
+        const ckeck = null;
 
         async function rander() {
             try {
@@ -152,6 +153,8 @@
                     document.getElementById('g').value = item.genre;
                     document.getElementById('p').value = item.price;
                     document.querySelector('#form button[type="submit"]').textContent = '추가';//버튼 이름 바꾸기
+                    ckeck = item.id;
+
                 });
 
                 container.appendChild(tr);
