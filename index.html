@@ -92,7 +92,7 @@
         <br><br>
 
         <button type="submit">저장</button>
-        <button type="rest">리셋</button>
+        <button type="reset">리셋</button>
     </form>
     <table id="datatable"><!--데이터가 담길 장소-->
 
@@ -151,6 +151,7 @@
                     document.getElementById('a').value = item.avatar;
                     document.getElementById('g').value = item.genre;
                     document.getElementById('p').value = item.price;
+                    document.querySelector('#form button[type="submit"]').textContent = '추가';//버튼 이름 바꾸기
                 });
 
                 container.appendChild(tr);
