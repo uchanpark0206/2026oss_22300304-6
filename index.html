@@ -79,18 +79,18 @@
         rest api 
         put(전체 데이터 업데이트) vs patch(일부분만 업데이트)
         -->
-        <h2>책 관리 </h2>
-        <table id = "datatable"><!--데이터가 담길 장소-->
+    <h2>책 관리 </h2>
+    <table id="datatable"><!--데이터가 담길 장소-->
 
-        </table>
+    </table>
 
     <script>
         //moc api의 url
-        const url = "https://6adea6df4e88f1bba4a53a44.mockapi.io/:endpoint";
+        const url = "https://6adea6df4e88f1bba4a53a44.mockapi.io/books";
 
         async function rander() {
             try {
-                const response = await fetch(API_URL); // GET 요청
+                const response = await fetch(url); // GET 요청
 
                 if (!response.ok) {
                     throw new Error('데이터를 불러오는데 실패했습니다.');
@@ -98,7 +98,7 @@
 
                 const data = await response.json(); // JSON을 자바스크립트 배열로 변환
 
-                // 가져온 데이터 확인용 (성공적으로 배열이 찍히는지 브라우저 콘솔에서 확인)
+                // 가져온 데이터 확인용 
                 console.log("서버에서 가져온 데이터:", data);
 
                 // 3번의 화면 출력 함수 호출
@@ -106,9 +106,31 @@
 
             } catch (error) {
                 console.error(error);
-                alert(error.message); // 화면에 오류 메시지 표시 (과제 조건)
+                alert(error.message); // 화면에 오류 메시지 표시
             }
         }
+        function renderData(data) {
+            // 이전 과제에서 사용했던 HTML 요소 선택 및 그리기 로직 활용
+            const container = document.getElementById('datatable');
+            container.innerHTML = ''; // 화면 초기화
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                //mok에서 사용한 데이터 정리하기(필드 5개 완료)
+
+
+                tr.innerHTML = `
+                <td>${item.id}</td>
+                <td> 제목: ${item.title};</td>
+                <td> 작가: ${item.avatar};</td>
+                <td> 장르: ${item.genre};</td>
+                <td> 가격: ${item.price};</td>
+                `
+                container.appendChild(tr);
+            });
+        }
+        // 시작시 바로 실행
+        rander();
 
 
 
