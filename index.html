@@ -80,19 +80,19 @@
         put(전체 데이터 업데이트) vs patch(일부분만 업데이트)
         -->
     <h2>책 관리 </h2>
-    <form>
+    <form id = "form">
         <label>제목</label>
-        <input type = "text"><br>
+        <input type="text" id ="t"><br>
         <label>작가</label>
-        <input type = "text"><br>
+        <input type="text" id ="a"><br>
         <label>장르</label>
-        <input type = "text"><br>
+        <input type="text" id ="g"><br>
         <label>가격</label>
-        <input type = "number">
+        <input type="number" id ="p">
         <br><br>
 
-        <button type = "submit">저장</button>
-        <button type = "rest">리셋</button>
+        <button type="submit">저장</button>
+        <button type="rest">리셋</button>
     </form>
     <table id="datatable"><!--데이터가 담길 장소-->
 
@@ -145,6 +145,49 @@
         }
         // 시작시 바로 실행
         rander();
+        //폼을 통해 추가하기
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', async (event) => {
+            // 새로고침 막기
+            event.preventDefault();
+
+            //input에 있는 내용들로 array만들기
+            const newBook = {
+                title: document.getElementById('t').value,
+                avatar: document.getElementById('a').value,
+                genre: document.getElementById('g').value,
+                price: document.getElementById('p').value
+            };
+
+            try {
+                //fetch()를 이용해 POST 요청 보내기
+                const response = await fetch(url, {
+                    method: 'POST', // 추가할 때는 무조건 POST
+                    headers: {
+                        // 서버에 우리가 보낼 데이터가 JSON 형태임을 알려주는 역할
+                        'Content-Type': 'application/json'
+                    },
+                    // 자바스크립트 객체를 JSON 문자열로 변환해서 서버로 전송
+                    body: JSON.stringify(newBook)
+                });
+
+                if (!response.ok) {
+                    throw new Error('데이터 추가에 실패했습니다.');
+                }
+
+                alert('새로운 책이 추가되었습니다!');
+
+                // 입력창 비우기
+                form.reset();
+
+                // 화면 목록 갱신
+                rander();
+
+            } catch (error) {//서버 통싱 에러 발생시 에러 띄우기
+                alert(error.message);
+            }
+        });
 
 
 
