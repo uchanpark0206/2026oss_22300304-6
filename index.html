@@ -132,6 +132,7 @@
                 const tr = document.createElement('tr');
                 //mok에서 사용한 데이터 정리하기(필드 5개 완료)
                 //수정 삭제 버튼 추가
+                //아이디는 무조건 하나여야함 따라서 id대신 class를 사용해야함
 
                 tr.innerHTML = `
                 <td>${item.id}</td>
@@ -139,8 +140,8 @@
                 <td> 작가: ${item.avatar};</td>
                 <td> 장르: ${item.genre};</td>
                 <td> 가격: ${item.price};</td>
-                <button id="edit">수정</button>
-                <button id="del" >삭제</button>
+                <button class="edit">수정</button>
+                <button class="del" >삭제</button>
                 `
                 container.appendChild(tr);
             });
