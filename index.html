@@ -198,6 +198,19 @@
                 genre: document.getElementById('g').value,
                 price: document.getElementById('p').value
             };
+            //벨리데이션 추가
+            if (!newBook.title.trim()) {
+                alert('제목을 입력하세요.'); return;
+            }
+            if (!newBook.avatar.trim()) {
+                alert('작가를 입력하세요.'); return;
+            }
+            if (!newBook.genre.trim()) {
+                alert('장르를 입력하세요.'); return;
+            }
+            if (newBook.price === '' || Number(newBook.price) <= 0) {
+                alert('0보다 큰 숫자를 입력하세요.'); return;
+            }
 
             try {
                 if (ckeck != null) {//수정에서 들어왔다면 실행
@@ -246,7 +259,7 @@
                 alert(error.message);
             }
         });
-        
+
     </script>
 </body>
 
