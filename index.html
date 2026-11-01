@@ -80,15 +80,15 @@
         put(전체 데이터 업데이트) vs patch(일부분만 업데이트)
         -->
     <h2>책 관리 </h2>
-    <form id = "form">
+    <form id="form">
         <label>제목</label>
-        <input type="text" id ="t"><br>
+        <input type="text" id="t"><br>
         <label>작가</label>
-        <input type="text" id ="a"><br>
+        <input type="text" id="a"><br>
         <label>장르</label>
-        <input type="text" id ="g"><br>
+        <input type="text" id="g"><br>
         <label>가격</label>
-        <input type="number" id ="p">
+        <input type="number" id="p">
         <br><br>
 
         <button type="submit">저장</button>
@@ -140,9 +140,19 @@
                 <td> 작가: ${item.avatar};</td>
                 <td> 장르: ${item.genre};</td>
                 <td> 가격: ${item.price};</td>
-                <button class="edit">수정</button>
-                <button class="del" >삭제</button>
-                `
+                <button class="edit" type = "button">수정</button>
+                <button class="del" type = "button">삭제</button>
+                `;
+                const edit = tr.querySelector('.edit');
+
+                // 수정 버튼 클릭시 데이터 폼으로 넣기
+                edit.addEventListener('click', () => {
+                    document.getElementById('t').value = item.title;
+                    document.getElementById('a').value = item.avatar;
+                    document.getElementById('g').value = item.genre;
+                    document.getElementById('p').value = item.price;
+                });
+
                 container.appendChild(tr);
             });
         }
