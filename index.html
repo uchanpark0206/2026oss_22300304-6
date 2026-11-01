@@ -159,6 +159,25 @@
                     ckeck = item.id;
 
                 });
+                const del = tr.querySelector('.del');
+                del.addEventListener('click', async () => {
+                    if (confirm('정말로 이 책을 삭제하시겠습니까?')) {
+                        try {
+                            const response = await fetch(`${url}/${item.id}`, {
+                                method: 'DELETE'
+                            });
+
+                            if (!response.ok) throw new Error('데이터 삭제에 실패했습니다.');
+                            alert('삭제되었습니다!');
+
+                            // 대소문자 통일 (booksdata)
+                            booksdata = booksdata.filter(book => book.id !== item.id);
+                            renderData(booksdata);
+                        } catch (error) {
+                            alert(error.message);
+                        }
+                    }
+                });
 
                 container.appendChild(tr);
             });
@@ -182,8 +201,8 @@
 
             try {
                 if (ckeck != null) {//수정에서 들어왔다면 실행
-                 
-                    response = await fetch(`${url}/${ckeck}`, {
+
+                    const response = await fetch(`${url}/${ckeck}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(newBook) // bookData를 newBook으로 수정
@@ -193,8 +212,8 @@
                     alert('책 정보가 수정되었습니다!');
 
                     // 작업이 끝났으니 다시 '추가 모드'로 돌려놓기 위해 비워줌
-                    editId = null;
-                    document.querySelector('#form button[type="submit"]').textContent = '새 책 추가하기';
+                    ckeck = null;
+                    document.querySelector('#form button[type="submit"]').textContent = "저장";
 
                 }
 
@@ -227,11 +246,7 @@
                 alert(error.message);
             }
         });
-
-
-
-
-
+        
     </script>
 </body>
 
