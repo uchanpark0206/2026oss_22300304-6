@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script >
+        const score = [10,20,30];
+        //반복하고 반환 하지 않음
+        forEach(score=>{
+            socre += 5;
+            console.log(score);
+        })
+        console.log(score);
+
+        const unpdate = score.map(score => score+5);
+        console.log(update);
+
+        const st = [
+            {id:"a",name:1,scr:10},
+            {id:"b",name:2,scr:20},
+            {id:"c",name:3,scr:30}
+        ]
+        forEach(st=>{//기본에 내가 알던 방식
+            console.log(st.name)
+        })
+        const name = st.map(function(st){//에로우 함수 없이
+            return st.name;
+        })
+        console.log(naem);
+
+        const aname = st.map(sr=>{
+            st.name
+        })
+        console.log(naem);
+
+        const filtring = sr.filter(s=>{
+            s.score >= 20;
+        })
+        //에로우 함수말고 일반함수를 쓸때는 리터을 사용해야함
+        console.log(filrting);
+
+        
+
+
+    </script>
+</body>
+
+</html>
